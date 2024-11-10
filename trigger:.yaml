@@ -1,0 +1,21 @@
+trigger:
+  branches:
+    include:
+      - main
+
+pool:
+  vmImage: 'ubuntu-latest'
+
+steps:
+  
+  # Step 1: Checkout Code
+  - task: GitHubCheckout@1
+    inputs:
+      repository: 'https://github.com/username/sample-app.git'
+      fetchDepth: 1
+
+  # Step 2: Run Ansible Playbook
+  - task: ShellScript@1
+    inputs:
+      scriptPath: 'deploy_docker_container.yml'
+      scriptArguments: '-i inventory.ini'

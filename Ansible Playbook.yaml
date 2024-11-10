@@ -1,0 +1,29 @@
+- name: Deploy Docker Container on Provisioned Server
+  hosts: webserver
+  become: yes
+  tasks:
+  
+    # Step 1: Pull Application Code from Repository
+    - name: Clone the application repository
+      git:
+        repo: "https://github.com/username/sample-app.git"
+        dest: /app
+        update: yes
+
+    # Step 2: Build Docker Image
+    - name: Build Docker image
+      docker_image:
+        path: /app
+        name: flask-app
+        tag: latest
+        state: present
+
+    # Step 3: Run Docker Container
+    - name: Run Docker container
+      docker_container:
+        name: flask-container
+        image: flask-app:latest
+        state: started
+        restart_policy: always
+        published_ports:
+          - "80:80"
