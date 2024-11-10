@@ -6,7 +6,7 @@
     # Step 1: Pull Application Code from Repository
     - name: Clone the application repository
       git:
-        repo: "https://github.com/username/sample-app.git"
+        repo: "https://github.com/pavani2244/Network_Project"
         dest: /app
         update: yes
 
@@ -25,5 +25,4 @@
         image: flask-app:latest
         state: started
         restart_policy: always
-        published_ports:
-          - "80:80"
+        published_ports: - "80:80"
