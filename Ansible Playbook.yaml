@@ -9,7 +9,6 @@
         repo: "https://github.com/pavani2244/Network_Project"
         dest: /app
         update: yes
-
     # Step 2: Build Docker Image
     - name: Build Docker image
       docker_image:
